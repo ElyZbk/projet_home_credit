@@ -1,0 +1,18 @@
+{
+  "exported_at": "2025-12-12T09:42:02.671986",
+  "best_threshold": 0.54,
+  "c_fn": 10.0,
+  "c_fp": 1.0,
+  "model_name": "pipeline_xgb",
+  "best_params": {
+    "classifier__colsample_bytree": 0.8343102325093853,
+    "classifier__gamma": 5.766615111348428,
+    "classifier__learning_rate": 0.035742715504302754,
+    "classifier__max_depth": 4,
+    "classifier__min_child_weight": 3,
+    "classifier__n_estimators": 579,
+    "classifier__reg_alpha": 0.003265888946964014,
+    "classifier__reg_lambda": 11.376819915966514,
+    "classifier__subsample": 0.9282557902975821
+  }
+}

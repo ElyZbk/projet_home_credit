@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Projet 7 Logo</title>
+  <desc id="desc">Purple circular logo with a white C shape</desc>
+  <circle cx="256" cy="256" r="256" fill="#7C6CF3" />
+  <path d="M256 96a160 160 0 1 0 0 320" fill="none" stroke="#F9F5ED" stroke-width="120" stroke-linecap="round" transform="scale(-1 1) translate(-512 0)" />
+</svg>

@@ -1,0 +1,34 @@
+# Raw data (too large for GitHub)
+data/raw/
+
+# MLflow local tracking
+mlruns/
+
+# Evidently reports (heavy HTML)
+artifacts/reports/
+
+# Predictions log (regenerable)
+artifacts/predictions/
+
+# Presentation / archive
+*.pptx
+*.zip
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+env/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Claude
+.claude/
