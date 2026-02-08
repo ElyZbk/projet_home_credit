@@ -122,7 +122,13 @@ Ce projet implémente un **pipeline MLOps end-to-end** pour la prédiction du ri
 
 | **API Production** | FastAPI avec validation Pydantic + documentation auto |
 
-| **Dashboard interactif** | Interface Streamlit pour tester les prédictions en temps réel |
+| **Dashboard interactif** | Interface Streamlit avec gauge speedometer, SHAP local et comparaison clients |
+
+| **Explicabilité SHAP** | Explication locale de chaque décision via SHAP TreeExplainer |
+
+| **Comparaison clients** | Histogrammes acceptés vs refusés avec position du client et filtres |
+
+| **Accessibilité WCAG** | Conformité aux critères 1.1.1, 1.4.1, 1.4.3, 1.4.4, 2.4.2 |
 
 | **Monitoring** | Détection automatique du data drift (Evidently) |
 
@@ -130,7 +136,7 @@ Ce projet implémente un **pipeline MLOps end-to-end** pour la prédiction du ri
 
 | **CI/CD** | Tests automatisés via GitHub Actions |
 
-| **Déploiement** | API live sur Render |
+| **Déploiement** | API sur Render + Dashboard sur Streamlit Cloud |
 
  
 
@@ -350,25 +356,23 @@ Réel 1        │  FN=1868  │  TP=3097  │
 
 ### 🎨 Dashboard Streamlit
 
- 
 
-Interface interactive pour :
 
-- **Sélection de clients** depuis un échantillon (`clients_sample.parquet`)
+Interface interactive pour le chargé d'étude :
 
-- **Appel API** automatique pour obtenir la prédiction
+- **Sélection de clients** depuis un échantillon de 10 000 clients (`clients_sample.parquet`)
 
-- **Visualisation du score** avec jauge horizontale colorée
+- **Gauge speedometer** (demi-cercle) affichant le score de défaut avec zones verte (accepté) et rouge (refusé)
 
-- **Décision explicite** : ACCEPTED / REFUSED
+- **Explication locale SHAP** : barplot horizontal des 10 variables les plus influentes pour chaque client, avec résumé textuel des 3 facteurs principaux pour faciliter l'explication au client
 
-- **Informations client** : âge estimé, montant du crédit
+- **Comparaison client** : 2 histogrammes (montant du crédit, âge) superposant la distribution des clients acceptés vs refusés, avec la position du client marquée par un trait bleu
+
+- **Filtrage** : liste déroulante pour comparer à un sous-groupe (par genre)
+
+- **Accessibilité WCAG** : labels textuels sur chaque zone colorée (1.4.1), contraste minimum 4.5:1 (1.4.3), tailles en rem (1.4.4), titre de page (2.4.2), alternatives textuelles sous chaque graphique (1.1.1)
 
 - **Inspection** : payload envoyé et réponse brute de l'API
-
- 
-
-**Capture d'écran** : Jauge horizontale avec zones verte/rouge séparées par le seuil, et aiguille indiquant le score de défaut.
 
  
 
@@ -626,7 +630,9 @@ print(response.json())
 
 | `GET` | `/health` | Health check (readiness probe) |
 
-| `POST` | `/predict` | Prédiction de scoring |
+| `POST` | `/predict` | Prédiction de scoring (probabilité + décision) |
+
+| `POST` | `/shap` | Explication locale SHAP (top 10 features + base value) |
 
  
 
@@ -933,11 +939,21 @@ home_credit_project/
 
 - [x] **Dashboard Streamlit interactif**
 
+- [x] **Explicabilité SHAP locale (endpoint API + visualisation dashboard)**
+
+- [x] **Comparaison clients acceptés vs refusés (histogrammes avec filtres)**
+
+- [x] **Gauge speedometer demi-cercle**
+
+- [x] **Accessibilité WCAG (1.1.1, 1.4.1, 1.4.3, 1.4.4, 2.4.2)**
+
 - [x] **Monitoring du data drift (Evidently AI)**
 
 - [x] **Journalisation des prédictions**
 
 - [x] **Script de génération d'échantillon clients**
+
+- [x] **Déploiement Streamlit Cloud + Render**
 
 
 ---
