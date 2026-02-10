@@ -68,24 +68,6 @@ def load_clients_sample() -> pd.DataFrame:
     return df
 
 
-@st.cache_data(show_spinner=False)
-def load_clients_with_decisions() -> pd.DataFrame:
-    """Load clients sample and add predicted decision via local model."""
-    from src.inference import load_champion
-
-    df = load_clients_sample()
-    model = load_champion()
-
-    feature_cols = [c for c in df.columns if c != "SK_ID_CURR"]
-    X = df[feature_cols]
-
-    probas = model.predict_proba(X)
-    df = df.copy()
-    df["PROBA_DEFAULT"] = probas
-    df["DECISION"] = np.where(probas < model.threshold, "ACCEPTED", "REFUSED")
-
-    return df
-
 
 # ---------------------------------------------------------------------------
 # Utility helpers
@@ -329,7 +311,7 @@ st.write(
 )
 
 with st.spinner("Chargement des clients..."):
-    df_clients = load_clients_with_decisions()
+    df_clients = load_clients_sample()
 
 # ---------------------------------------------------------------------------
 # Sidebar
