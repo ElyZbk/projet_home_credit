@@ -9,7 +9,7 @@ import requests
 import streamlit as st
 from src.config import PROCESSED_DATA_DIR
 
-API_BASE_URL = "https://home-credit-project.onrender.com"
+API_BASE_URL = "https://projet-home-credit.onrender.com"
 PREDICT_ENDPOINT = f"{API_BASE_URL}/predict"
 SHAP_ENDPOINT = f"{API_BASE_URL}/shap"
 THRESHOLD_FALLBACK = 0.54
